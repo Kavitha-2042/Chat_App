@@ -1,12 +1,14 @@
-import express from "express"
-
-import { ModifiedRouter } from "../interface"
+import express from 'express'
+import { ModifiedRouter } from '../interface';
 import * as userController from '../Controller/userController'
+import middleware from '../Middleware/middleware'
 
 const userRoute:ModifiedRouter = express.Router()
 
-userRoute.post('/signup', userController.Signup)
+userRoute.post('/register', userController.Register)
 
-userRoute.post('/signin', userController.Signin)
+userRoute.post('/register/:passwordURL', userController.PasswordUrl)
+
+userRoute.post('/login',middleware, userController.Login)
 
 export default userRoute

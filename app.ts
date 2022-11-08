@@ -3,16 +3,23 @@ dotenv.config()
 import express from "express"
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
-
-import adminRoute from './Route/adminRoute'
-import userRoute from './Route/userRoute'
+import userRoute from './Route/userRoute';
+import cors from 'cors'
 
 const app:express.Application = express()
 
+app.use(cors({
+    credentials:true,
+    origin:process.env.REACT_URL,
+    methods:["GET", "POST"]
+}))
+
+app.use('/Public', express.static('Public'))
+
+app.use(bodyParser.json())
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
-app.use('/admin', adminRoute)
 app.use('/user', userRoute)
 
 mongoose.connect(process.env.MONGOOSE_URL as string, ()=>{

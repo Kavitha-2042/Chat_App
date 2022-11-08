@@ -8,13 +8,22 @@ export const userSchema = new mongoose.Schema({
     },
     password:{
         type:String,
-        required:true
+        default:''
     },
     conPassword:{
         type:String
     },
     phoneNumber:{
         type:Number,
+        required:true
+    },
+    email:{
+        type:String,
+        required:true
+    },
+    role:{
+        type:String,
+        default:"User",
         required:true
     }
 })
