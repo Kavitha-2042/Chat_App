@@ -2,6 +2,7 @@ import express from 'express'
 
 export interface ModifiedRequest extends express.Request{
     users:any
+    admins:any
 }
 
 export interface ModifiedRouter extends express.IRouter{

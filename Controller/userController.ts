@@ -11,6 +11,7 @@ import multer from "multer"
 import { ModifiedRequest } from '../interface'
 import userModel from '../Model/userModel'
 import urlModel from "../Model/urlModel"
+import fileModel from "../Model/fileModel"
 
 function urlPattern(length:number){
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -47,7 +48,7 @@ export const Register = (req:ModifiedRequest, res:express.Response) =>{
         else{
             userModel.create({name,email,phoneNumber})
             .then((createResponse)=>{
-                let token = jwt.sign({_id:createResponse._id}, process.env.SECRET_KEY as string)
+                // let token = jwt.sign({_id:createResponse._id}, process.env.SECRET_KEY as string)
                 const url = urlPattern(20)
                 const creationTime = Date.now()
                 const expirationTime = creationTime+5*60*1000
@@ -62,11 +63,11 @@ export const Register = (req:ModifiedRequest, res:express.Response) =>{
                 })
                 .then((response)=>{
                     return res.json({
-                        message:"Link sent",
+                        message:"Link sent", 
                         redirection:null,
                         user:createResponse,
                         auth:true,
-                        token
+                        // token
                     })
                 })
                 .catch((err)=>{
@@ -248,25 +249,87 @@ export const Login = (req:ModifiedRequest, res:express.Response) =>{
     .catch(err=>console.log(err))
 }
 
+export const Status = (req:ModifiedRequest, res:express.Response) =>{
+    // if(!req.users || !req.admins){
+    //     return res.json({
+    //         message:"You're not logged in!",
+    //         auth: false,
+    //         user:null,
+    //         admin : null
+    //     })
+    // }else{
+    //     return res.json({
+    //         message:"You're logged in!",
+    //         auth: true,
+    //         user:req.users,
+    //         admin:req.admins
+    //     })
+    // }
+
+    if(req.users.role === "User"){
+        if(!req.users){
+            return res.json({
+                message:"You're not logged in!",
+                auth: false,
+                user:null,
+                admin : null
+        })
+        }else{
+            return res.json({
+                message:"You're logged in!",
+                auth: true,
+                user:req.users
+            })
+        }
+    }
+    else{
+        if(!req.admins){
+                return res.json({
+                    message:"You're not logged in!",
+                    auth: false,
+                    admin : null
+                })
+            }else{
+                return res.json({
+                    message:"You're logged in!",
+                    auth: true,
+                    admin:req.admins
+                })
+            }
+    }
+}
 
 
 
-// const fileStorageEngine = multer.diskStorage({
-//     destination:(req,file,cb)=>{
-//         cb(null, "Public/images")
-//     },
-//     filename:(req,file,cb)=>{
-//         cb(null, Date.now()+"_"+file.originalname)
-//     }
-// })
+const fileStorageEngine = multer.diskStorage({
+    destination:(req,file,cb)=>{
+        cb(null, "Public/images")
+    },
+    filename:(req,file,cb)=>{
+        cb(null, Date.now()+"_"+file.originalname)
+    }
+})
 
-// export const upload = multer({storage:fileStorageEngine})
+export const upload = multer({storage:fileStorageEngine})
 
-// export const ProfileUpload = (req:ModifiedRequest, res:express.Response) =>{
-//     const {image} = req.body
+export const ProfileUpload = (req:ModifiedRequest, res:express.Response) =>{
+    const {image} = req.body
 
-//     let newItem = {
-//         image: (req.file as Express.Multer.File).path,
-//         email:req.users.email
-//     }
-// }
+    let newItem = {
+        image: (req.file as Express.Multer.File).path,
+        email:req.users.email
+    }
+
+    new fileModel(newItem).save()
+    .then((fileResponse)=>{
+        console.log(fileResponse)
+        if(fileResponse){
+            return res.json({
+                message:"Image Uploaded",
+                file:(req.file as Express.Multer.File).path,
+                auth:true
+            })
+        }
+    })
+    .catch(err=>console.log(err))
+}

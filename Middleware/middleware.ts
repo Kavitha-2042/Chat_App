@@ -17,11 +17,12 @@ const middleware = (req:ModifiedRequest, res:express.Response, next:express.Next
         let decoding:any = jwt.decode(token)
 
         try {
-            if(req.path !== '/register' && !req.path.startsWith('/register') && req.path !== '/login'){
+            if(req.path !== '/register'  && req.path !== '/login' && !req.path.startsWith('/register')){
                 userModel.findById({_id: new mongoose.Types.ObjectId(decoding._id)})
                 .then((findResponse)=>{
                     if(findResponse){
                         req.users = findResponse
+                        req.admins = findResponse
                         next()
                     }
                 })
@@ -39,7 +40,7 @@ const middleware = (req:ModifiedRequest, res:express.Response, next:express.Next
         }
     }
     else{
-        if(req.path === '/register' || req.path.startsWith('/register') || req.path === '/login' ){
+        if(req.path === '/register' || req.path.startsWith('/register') || req.path === '/login'  ){
             next()
         }
         else{
