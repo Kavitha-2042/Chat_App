@@ -5,14 +5,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color:azure; */
+  /* background-color:azure; }*/
 }
 
-code {
+ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} 
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::before,::after{
+  margin: 0;
+  padding:0;
+}

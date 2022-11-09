@@ -1,17 +1,19 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
 import Home from './Pages/Home';
 import Register from './Pages/Register';
 import Password from './Pages/Password';
 import Login from './Pages/Login';
 import Profile from './Pages/Profile';
 import ProfileImage from './Pages/ProfileImage';
+import Header from './Components/Header';
+import Signout from './Pages/Signout';
 
 function App() {
   return (
    <div>
     <BrowserRouter>
+    <Header/>
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/register' element={<Register/>} />
@@ -19,6 +21,7 @@ function App() {
         <Route path='/login' element={<Login/>} />
         <Route path='/profile' element={<Profile/>} />
         <Route path='/profileimage' element={<ProfileImage/>} />
+        <Route path='/signout' element={<Signout/>} />
       </Routes>
     </BrowserRouter>
    </div>
