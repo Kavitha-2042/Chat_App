@@ -5,7 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color:azure; }*/
+  background-color:aliceblue; 
+
+  @media screen and (min-width: 720px) and (max-width:1080px) {
+    grid-template-columns: 35% 65%
+  }
 }
 
  code {

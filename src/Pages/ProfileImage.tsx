@@ -36,7 +36,7 @@
 // export default ProfileImage
 
 import React from "react";
-import RenderAvatar from '../Components/Avatar/RenderAvatar';
+import RenderAvatar from '../Components/ProfileImage/Avatar/RenderAvatar';
 
 
 

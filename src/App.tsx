@@ -6,14 +6,15 @@ import Password from './Pages/Password';
 import Login from './Pages/Login';
 import Profile from './Pages/Profile';
 import ProfileImage from './Pages/ProfileImage';
-import Header from './Components/Header';
+// import Header from './Components/Header';
 import Signout from './Pages/Signout';
+import Chat from './Pages/Chat';
 
 function App() {
   return (
    <div>
     <BrowserRouter>
-    <Header/>
+    {/* <Header/> */}
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/register' element={<Register/>} />
@@ -22,6 +23,7 @@ function App() {
         <Route path='/profile' element={<Profile/>} />
         <Route path='/profileimage' element={<ProfileImage/>} />
         <Route path='/signout' element={<Signout/>} />
+        <Route path='/chat' element={<Chat/>} />
       </Routes>
     </BrowserRouter>
    </div>

@@ -15,17 +15,17 @@ const Password = () => {
         e.preventDefault()
         axios.post('/user/register/'+params.url, {password, conPassword})
         .then((passwordResponse)=>{
-            if(passwordResponse.data.auth === true){
+            if(passwordResponse){
                 toast.success(passwordResponse.data.message, {
                     position: toast.POSITION.TOP_CENTER
                 })
                 
                 setTimeout(() => {
-                  navigate('/profileimage')
+                  navigate('/login')
                 },5000);
             }
             else{
-                toast.info(passwordResponse.data.message,{
+                toast.info("ERROR",{
                     position: toast.POSITION.TOP_CENTER
                 })
             }

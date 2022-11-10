@@ -20,16 +20,16 @@ const Register = () => {
     axios.post('/user/register', {name,email,phoneNumber})
     .then((registerResponse)=>{
         console.log("register response: ", registerResponse)
-        if(registerResponse.data.auth === true){
+        if(registerResponse){
             console.log("if works")
-            localStorage.setItem('jwt-token', registerResponse.data.token)
-            dispatch(initialize({user:registerResponse.data.user, auth:registerResponse.data.auth}))
+            // localStorage.setItem('jwt-token', registerResponse.data.token)
+            // dispatch(initialize({user:registerResponse.data.user, auth:registerResponse.data.auth}))
             toast.success(registerResponse.data.message,{
                 position:toast.POSITION.TOP_CENTER
             })
         }
         else{
-            toast.error(registerResponse.data.message,{
+            toast.error("error",{
                 position: toast.POSITION.TOP_CENTER
             })
         }

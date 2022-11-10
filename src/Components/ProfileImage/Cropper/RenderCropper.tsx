@@ -5,7 +5,7 @@ import { Slider } from '@mui/material';
 import '/home/metadiac/Documents/Group_Chat/client/src/App.css'
 import { toast, ToastContainer } from 'react-toastify';
 import axios from 'axios';
-import { dataURLtoFile } from '../../Utils/dataUrlToFile';
+import { dataURLtoFile } from '../../../Utils/dataUrlToFile'
 
 
 

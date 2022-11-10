@@ -1,10 +1,11 @@
 import React,{useState} from "react";
 import "./avatar.css";
+import "../../../index.css"
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { CameraAlt } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import RenderCropper from '../Cropper/RenderCropper';
+import RenderCropper from '../Cropper/RenderCropper'
 
 const RenderAvatar = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -20,13 +21,15 @@ const RenderAvatar = () => {
 
   const [avatar,setAvatar] = useState("")
 
+  console.log("avatar: ", avatar)
+
   return (
     <>
       <div
         className="avatar-container"
         style={{
-          width: "500px",
-          height: "500px",
+          width: "300px",
+          height: "300px",
           position: "absolute",
           top: "50%",
           left: "50%",
