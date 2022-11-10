@@ -11,7 +11,7 @@ import multer from "multer"
 import { ModifiedRequest } from '../interface'
 import userModel from '../Model/userModel'
 import urlModel from "../Model/urlModel"
-import fileModel from "../Model/fileModel"
+
 
 function urlPattern(length:number){
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -65,8 +65,8 @@ export const Register = (req:ModifiedRequest, res:express.Response) =>{
                     return res.json({
                         message:"Link sent", 
                         redirection:null,
-                        user:createResponse,
-                        auth:true,
+                        user:createResponse
+                        // auth:true,
                         // token
                     })
                 })
@@ -143,7 +143,7 @@ export const PasswordUrl = (req:ModifiedRequest, res:express.Response) =>{
                             .then((updateResponse)=>{
                                 console.log("update response: ", updateResponse)
                                 
-                                // let token = jwt.sign({_id:},process.env.SECRET_KEY as string)
+                                // let token = jwt.sign({_id:updateResponse._id},process.env.SECRET_KEY as string)
                                 return res.json({
                                     message: "Register successfull!",
                                     auth:true,
@@ -222,6 +222,7 @@ export const Login = (req:ModifiedRequest, res:express.Response) =>{
                 }
             }
             console.log("below the admin")
+            //Here the role is User
                 console.log("User")
                 bcryptjs.compare(password, nameResponse.password)
                 .then((comparedResult)=>{
@@ -315,21 +316,59 @@ export const upload = multer({storage:fileStorageEngine})
 export const ProfileUpload = (req:ModifiedRequest, res:express.Response) =>{
     const {image} = req.body
 
-    let newItem = {
-        image: (req.file as Express.Multer.File).path,
-        email:req.users.email
-    }
+        image: (req.file as Express.Multer.File).path
 
-    new fileModel(newItem).save()
+
+    userModel.updateOne({name:req.users.name}, {image:`http://localhost:5000/${(req.file as Express.Multer.File).path}`})
     .then((fileResponse)=>{
         console.log(fileResponse)
         if(fileResponse){
             return res.json({
                 message:"Image Uploaded",
-                file:(req.file as Express.Multer.File).path,
+                file:`http://localhost:5000/${(req.file as Express.Multer.File).path}`,
                 auth:true
             })
         }
+    })
+    .catch(err=>console.log(err))
+}
+
+export const CurrentUser = (req:ModifiedRequest, res:express.Response) =>{
+    try {
+        userModel.find({_id:req.users._id}).select([
+            "name",
+            "email",
+            "image",
+            "_id"
+        ])
+        .then((selectResponse)=>{
+            return res.json({
+                message:"Current User Details sent",
+                details: selectResponse,
+                auth:true
+            })
+        })
+        .catch(err=>console.log(err))
+    } catch (error) {
+        console.log("error: ",error)
+    }
+}
+
+export const AllUsers = (req:ModifiedRequest, res:express.Response) =>{
+    const {role} = req.users
+
+    userModel.find({$and:[{"role":"User"},{_id:{$ne:req.users._id}}]}).select([
+        "name",
+        "email",
+        "image",
+        "_id"
+    ])
+    .then((allUsersResponse)=>{
+        return res.json({
+            message:"All users Details sent",
+            details: allUsersResponse,
+            auth:true
+        })
     })
     .catch(err=>console.log(err))
 }

@@ -3,7 +3,6 @@ import mongoose from "mongoose"
 export const userSchema = new mongoose.Schema({
     name:{
         type:String,
-        required:true,
         unique:true
     },
     password:{
@@ -14,17 +13,18 @@ export const userSchema = new mongoose.Schema({
         type:String
     },
     phoneNumber:{
-        type:Number,
-        required:true
+        type:Number
     },
     email:{
-        type:String,
-        required:true
+        type:String
     },
     role:{
         type:String,
-        default:"User",
-        required:true
+        default:"User"
+    },
+    image:{
+        type:String,
+        default:''
     }
 })
 

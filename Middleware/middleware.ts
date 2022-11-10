@@ -40,7 +40,7 @@ const middleware = (req:ModifiedRequest, res:express.Response, next:express.Next
         }
     }
     else{
-        if(req.path === '/register' || req.path.startsWith('/register') || req.path === '/login'  ){
+        if(req.path === '/register' || req.path.startsWith('/register') || req.path === '/login'   ){
             next()
         }
         else{

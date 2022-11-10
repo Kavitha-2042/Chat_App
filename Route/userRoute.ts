@@ -10,10 +10,14 @@ userRoute.post('/register', userController.Register)
 
 userRoute.post('/register/:passwordURL', userController.PasswordUrl)
 
-userRoute.post('/login',middleware, userController.Login)
+userRoute.post('/login', userController.Login)
 
 userRoute.get('/status', middleware, userController.Status)
 
 userRoute.post('/profileupload', upload.single('image'), middleware, userController.ProfileUpload)
+
+userRoute.get('/currentUser', middleware, userController.CurrentUser)
+
+userRoute.get('/allUsers',middleware, userController.AllUsers)
 
 export default userRoute
