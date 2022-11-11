@@ -5,6 +5,7 @@ import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import userRoute from './Route/userRoute';
 import cors from 'cors'
+import messageRoute from './Route/messagesRoute';
 
 const app:express.Application = express()
 
@@ -21,6 +22,7 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
 app.use('/user', userRoute)
+app.use('/message', messageRoute)
 
 mongoose.connect(process.env.MONGOOSE_URL as string, ()=>{
     console.log("Db connected")
