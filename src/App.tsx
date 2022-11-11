@@ -10,16 +10,17 @@ import ProfileImage from './Pages/ProfileImage';
 import Signout from './Pages/Signout';
 import Chat from './Pages/Chat';
 
+
 function App() {
   return (
    <div>
     <BrowserRouter>
     {/* <Header/> */}
       <Routes>
-        <Route path='/' element={<Home/>} />
+        {/* <Route path='/' element={<Home/>} /> */}
         <Route path='/register' element={<Register/>} />
         <Route path='/register/:url' element={<Password/>} />
-        <Route path='/login' element={<Login/>} />
+        <Route path='/' element={<Login/>} />
         <Route path='/profile' element={<Profile/>} />
         <Route path='/profileimage' element={<ProfileImage/>} />
         <Route path='/signout' element={<Signout/>} />

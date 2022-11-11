@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Logo/Logo";
-import Welcome from "./Welcome";
-import Chat from "../../Pages/Chat";
+
+
+import { Logout } from "@mui/icons-material";
+import ChatContainer from './ChatContainer';
+import Signout from "../../Pages/Signout";
+import ChatInput from './ChatInput';
+
+interface propType{
+  setbtn:React.Dispatch<React.SetStateAction<boolean>>
+  btn:boolean
+  currentChat:any
+}
 
 // {changeChat}:any
-const Contacts = () => {
+const Contacts = ({setbtn, btn, currentChat}:propType) => {
+
+  
+
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState("");
   const [allUsers, setAllUsers] = useState([]);
@@ -14,11 +27,14 @@ const Contacts = () => {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
+  const [currentUserID, setCurrentUserID] = useState("")
 
   const [allUserName, setAllUserName] = useState(undefined);
   const [allUserImage, setAllUserImage] = useState(undefined);
 
-    const [btn,setBtn] = useState(false)
+  const [selectedName, setSelectedName] = useState("")
+  const [selectedImage, setSelectedImage] = useState("")
+  const [clicked, setClicked] = useState(false)
 
    
 
@@ -38,6 +54,7 @@ const Contacts = () => {
             setCurrentUser(currentUserResponse.data.details);
             setCurrentUserName(currentUserResponse.data.details[0].name);
             setCurrentUserImage(currentUserResponse.data.details[0].image);
+            setCurrentUserID(currentUserResponse.data.details[0]._id)
           } else {
             navigate("/profileimage");
           }
@@ -62,24 +79,29 @@ const Contacts = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log("current user name: ", currentUserName);
-  console.log("current user image: ", currentUserImage);
-  console.log("all users: ", allUsers);
-  console.log("all user name: ", allUserName);
-  console.log("all user image: ", allUserImage);
+  // console.log("current user name: ", currentUserName);
+  // console.log("current user image: ", currentUserImage);
+  // console.log("all users: ", allUsers);
+  // console.log("all user name: ", allUserName);
+  // console.log("all user image: ", allUserImage);
 
-//   const changeCurrentChat = (index: any, allUsers: []) => {
-//     setCurrentSelected(index)
-//     changeChat(allUsers)
-//   };
+  // const changeCurrentChat = (index:any, allUsers:any) => {
+  //   setCurrentSelected(index)
+  //   changeChat(allUsers)
+  // };
     
 
-const eventHandler = (e:any) =>{
-    e.preventDefault()
-    setBtn(true)
+const eventHandler = (val:any) =>{
+    
+    setbtn(true)
     console.log("Button clikced")
-    // navigate('/')
-
+    setSelectedName(val.name)
+    setSelectedImage(val.image)
+    setClicked(true)
+    // navigate('/login')
+    console.log("_id: ", val._id)
+    console.log("My id: ", currentUserID)
+    
 }
     
   return (
@@ -108,8 +130,23 @@ const eventHandler = (e:any) =>{
               fontFamily: "cursive",
             }}
           >
-            <Logo />
+            <Logo /> 
+            
+
+            <div
+          style={{
+            color:"white",
+            fontSize:"50px",
+            display:"flex",
+            justifyItems:"flex-end",
+            alignItems:"flex-end"
+            }}>
+
+       
           </div>
+          
+          </div>
+         
 
           <div
             style={{
@@ -144,7 +181,8 @@ const eventHandler = (e:any) =>{
                     marginLeft: "10px",
                   }}
                 />
-
+                <div>
+     
                 <div
                   className="currentusername"
                   style={{
@@ -158,13 +196,14 @@ const eventHandler = (e:any) =>{
                     marginTop: "-70px",
                     fontSize: "30px",
                     fontFamily: "initial",
+                    
                   }}
                 >
-                  <h3>{currentUserName}</h3>
+                  {<Link to='/profile'>{currentUserName}</Link>}
                   <br />
                 </div>
 
-                <p
+                <Link to='/profile'
                   style={{
                     fontSize: "15px",
                     marginTop: "-5px",
@@ -173,10 +212,11 @@ const eventHandler = (e:any) =>{
                   }}
                 >
                   User
-                </p>
+                </Link>
               </div>
             </div>
-
+            
+            </div>
             <div
             
               style={
@@ -213,7 +253,8 @@ const eventHandler = (e:any) =>{
                         <div
                         className=""
                           key={val._id}
-                          onClick={eventHandler}
+                          
+                          onClick={()=>eventHandler(val)}
                           style={{
                             backgroundColor: "#ffffff34",
                             paddingLeft:"10px",
@@ -225,6 +266,7 @@ const eventHandler = (e:any) =>{
                           <img
                             src={val.image}
                             alt=""
+                            
                             className="rounded-full"
                             style={{
                               height: "4rem",
@@ -237,11 +279,12 @@ const eventHandler = (e:any) =>{
                             style={{
                               color: "white",
                               marginTop: "-55px",
-                              marginLeft: "-110px",
+                              marginLeft: "-40px",
                               fontSize: "20px",
                             }}
                           >
                             {val.name}
+                            
                           </h1>
                           <br />
                         </div>
@@ -251,6 +294,10 @@ const eventHandler = (e:any) =>{
                 ) : (
                   <></>
                 )}
+
+                  
+
+
               </div>
             </div>
           </div>
@@ -259,8 +306,20 @@ const eventHandler = (e:any) =>{
         <></>
       )}
       
+      
+      {/* {
+        btn?
+        <>
+        <ChatContainer selectedImage={selectedImage} selectedName={selectedName} currentChat={undefined} />
+        </>
+        :
+        <></>
+      } */}
+
+
     </div>
   );
 };
 
 export default Contacts;
+

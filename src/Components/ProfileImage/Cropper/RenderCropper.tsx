@@ -89,7 +89,7 @@ const RenderCropper = ({setAvatar}:any) => {
             {/* <IconButton  style={{position:"absolute", top:"70px",right:"30px"}}>
             <Cancel className='hover:bg-red-700' style={{ color:"red",fontSize:"30px" }}  />
             </IconButton> */}
-        <div className="conatiner-cropper" style={{height:"90%",width:"100vw",backgroundColor:"ghostwhite"}}>
+        <div className="conatiner-cropper" style={{height:"90%",width:"100vw",}}>
           {
             image?
             <>
@@ -122,7 +122,7 @@ const RenderCropper = ({setAvatar}:any) => {
         </div>
 
         <div className="container-buttons" 
-        style={{height:"10%", border:"1px solid #f5f5f5", display:"flex", alignItems:"center", justifyContent:"center", width:"100vw"}}>
+        style={{height:"10%", border:"1px solid #f5f5f5", display:"flex", alignItems:"center", justifyContent:"center", width:"100vw", marginTop:"-150px"}}>
           <input
             type="file"
             accept="images/*"

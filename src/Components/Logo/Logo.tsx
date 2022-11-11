@@ -8,7 +8,7 @@ const Logo = () => {
       style={{
         color:"whitesmoke",
         fontSize:"30px",
-      }}>Group_Chat</h1>
+      }}>Chat_App</h1>
     </div>
   )
 }

@@ -13,6 +13,7 @@ const userSlice = createSlice({
         initialize:(state:InitialState,action:PayloadAction<InitialState>)=>{
             state.user = action.payload.user
             state.auth = action.payload.auth
+            
         }
     }
 })

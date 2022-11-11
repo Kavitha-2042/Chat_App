@@ -1,5 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Logout } from '@mui/icons-material';
 
 const Welcome = () => {
 
@@ -17,6 +19,7 @@ const Welcome = () => {
 
   return (
     <div className=''>
+             
       <h1 
       style={{
         color:'white',
@@ -26,7 +29,7 @@ const Welcome = () => {
         fontSize:"50px",
         paddingLeft:"290px",
         paddingTop:"20%"
-    }}> Welcome {name}! </h1>
+    }}> Welcome, {name}! </h1>
           
       <br />
       <h3 style={{
@@ -37,6 +40,7 @@ const Welcome = () => {
         justifyItems:"center",
         paddingLeft:"190px"
       }}>Please select a chat to Start Messaging!!!</h3>
+
     </div>
   )
 }

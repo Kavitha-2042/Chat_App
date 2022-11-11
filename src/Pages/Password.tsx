@@ -21,7 +21,7 @@ const Password = () => {
                 })
                 
                 setTimeout(() => {
-                  navigate('/login')
+                  navigate('/')
                 },5000);
             }
             else{

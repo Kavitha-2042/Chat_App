@@ -25,3 +25,4 @@ export interface AdminType{
     admin: Admin | null,
     auth:boolean
 }
+

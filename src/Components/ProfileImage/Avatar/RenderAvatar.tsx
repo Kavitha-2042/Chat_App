@@ -42,7 +42,7 @@ const RenderAvatar = () => {
             width: "100%",
             height: "100%",
             borderRadius: "50%",
-            backgroundColor: "#f5f5f5",
+            backgroundColor: "#0d0d48",
             overflow: "hidden",
           }}
         >
@@ -70,10 +70,10 @@ const RenderAvatar = () => {
           bottom: "0",
           height: "3rem",
           width: "3rem",
-          backgroundColor: "#f5f5f5",
+          backgroundColor: "#0d0d48",
           marginBottom: "220px",
           marginRight: "750px",
-          
+          color:"white"
         }}
       >
         <CameraAlt fontSize="large"/>

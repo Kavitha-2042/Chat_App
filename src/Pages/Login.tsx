@@ -56,7 +56,7 @@ const Login = () => {
               position: toast.POSITION.TOP_CENTER,
             });
             setTimeout(() => {
-              navigate("/profile");
+              navigate("/chat");
             }, 5000);
           } else {
             toast.error(LoginResponse.data.message, {
@@ -74,6 +74,13 @@ const Login = () => {
 
   return (
     <div>
+      <h1 style={{
+        color:"white",
+        fontSize:"50px",
+        marginLeft:"750px",
+        marginTop:"150px",
+        marginBottom:"-90px"
+      }}>Welcome to Chat_App</h1>
       <div className="flex justify-center">
         <div className="block p-6 rounded-lg shadow-2xl bg-blue-100 max-w-lg  m-48">
           <h5 className="text-gray-900 leading-tight font-medium mb-2 text-center text-2xl">
@@ -118,7 +125,7 @@ const Login = () => {
               </label>
             </div>
             <a href="#!" className="text-gray-800">
-              Forgot password?
+              {/* Forgot password? */}
             </a>
           </div>
 

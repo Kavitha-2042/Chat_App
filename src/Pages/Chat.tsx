@@ -3,6 +3,9 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import Contacts from '../Components/Chat/Contacts';
 import Welcome from '../Components/Chat/Welcome';
+import ChatContainer from '../Components/Chat/ChatContainer';
+
+
 
 const Chat = () => {
   const navigate = useNavigate()
@@ -10,13 +13,16 @@ const Chat = () => {
   const [currentUser, setCurrentUser] = useState("")
   const [allUsers, setAllUsers] = useState([])
 
+  const [btn, setBtn] = useState(false)
 
-  // const [currentChat,setCurrentChat] = useState(undefined)
+
+  const [currentChat,setCurrentChat] = useState(undefined)
 
   useEffect(()=>{
     if(!localStorage.getItem('jwt-token')){
-      navigate('/login')
+      navigate('/') 
     }
+   
   },[])
 
   useEffect(()=>{
@@ -27,10 +33,13 @@ const Chat = () => {
         if(currentUserResponse.data.image){
           setCurrentUser(currentUserResponse.data.details)
         }
+        // else{
+        //   navigate('/profileimage')
+        // }
       }
     })
     .catch(err=>console.log(err))
-  },[])
+  },[currentUser])
 
   useEffect(()=>{
     axios.get("/user/allUsers")
@@ -43,9 +52,9 @@ const Chat = () => {
     .catch(err=>console.log(err))
   },[])
 
-  // const handleChatChange = (chat:any) =>{
-  //   setCurrentChat(chat)
-  // }
+  const handleChatChange = (chat:any) =>{
+    setCurrentChat(chat)
+  }
 
   console.log("current user check: ", currentUser)
 
@@ -70,13 +79,35 @@ const Chat = () => {
         display:'grid',
         gridTemplateColumns:'25% 75%'
       }}>
+
+
+
 {/* changeChat={handleChatChange} */}
-      <Contacts  />
-      <Welcome/>
-      
+      <Contacts setbtn={setBtn} btn={btn} currentChat={currentChat}   />
+      {
+        btn?
+        <>
+        <ChatContainer currentChat={currentChat}/>
+        </>
+        :
+        <>
+          <Welcome/>
+        </>
+      }
+
+      {/* {
+        currentChat === undefined?
+        <><Welcome /></>
+        :
+        <>
+        <ChatContainer currentChat={currentChat} />
+        </>
+      }
+    */}
       
       </div>
       </div>
+     
     </div>
   )
 }

@@ -22,8 +22,6 @@ const Register = () => {
         console.log("register response: ", registerResponse)
         if(registerResponse){
             console.log("if works")
-            // localStorage.setItem('jwt-token', registerResponse.data.token)
-            // dispatch(initialize({user:registerResponse.data.user, auth:registerResponse.data.auth}))
             toast.success(registerResponse.data.message,{
                 position:toast.POSITION.TOP_CENTER
             })
@@ -82,7 +80,7 @@ const Register = () => {
                   <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                     Have an account?
                     <a
-                      href="/login"
+                      href="/"
                       className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
                     >
                        Login
