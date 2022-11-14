@@ -9,6 +9,7 @@ import ProfileImage from './Pages/ProfileImage';
 // import Header from './Components/Header';
 import Signout from './Pages/Signout';
 import Chat from './Pages/Chat';
+import Admin from './Pages/Admin';
 
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/profileimage' element={<ProfileImage/>} />
         <Route path='/signout' element={<Signout/>} />
         <Route path='/chat' element={<Chat/>} />
+        <Route path='/admin' element={<Admin/>} />
         
       </Routes>
     </BrowserRouter>

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Contacts from '../Components/Chat/Contacts';
 import Welcome from '../Components/Chat/Welcome';
 import ChatContainer from '../Components/Chat/ChatContainer';
+import { Logout } from '@mui/icons-material';
 
 
 
@@ -80,7 +81,7 @@ const Chat = () => {
         gridTemplateColumns:'25% 75%'
       }}>
 
-
+      
 
 {/* changeChat={handleChatChange} */}
       <Contacts setbtn={setBtn} btn={btn} currentChat={currentChat}   />

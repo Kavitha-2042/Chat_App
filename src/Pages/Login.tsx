@@ -34,7 +34,7 @@ const Login = () => {
               position: toast.POSITION.TOP_CENTER,
             });
             setTimeout(() => {
-              navigate("/");
+              navigate("/admin");
             }, 5000);
           } else {
             toast.error(LoginResponse.data.message, {

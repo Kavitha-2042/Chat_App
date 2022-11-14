@@ -56,6 +56,8 @@ const Contacts = ({setbtn, btn, currentChat}:propType) => {
             setCurrentUserName(currentUserResponse.data.details[0].name);
             setCurrentUserImage(currentUserResponse.data.details[0].image);
             setCurrentUserID(currentUserResponse.data.details[0]._id)
+            
+            
           } 
           else {
             navigate("/profileimage");
@@ -65,6 +67,10 @@ const Contacts = ({setbtn, btn, currentChat}:propType) => {
       .catch((err) => console.log(err));
   }, []);
 
+  localStorage.setItem("CurrentUserName", currentUserName)
+  localStorage.setItem("CurrentUserId", currentUserID)
+
+  
   console.log("INcontacts Name: ", currentUserName)
 
   useEffect(() => {
@@ -77,6 +83,7 @@ const Contacts = ({setbtn, btn, currentChat}:propType) => {
             setAllUsers(allResponse.data.details);
             setAllUserImage(allResponse.data.details[0].image);
             setAllUserName(allResponse.data.details[0].name);
+          
           }
         }
       })
@@ -107,6 +114,8 @@ const eventHandler = (val:any) =>{
     // navigate('/login')
     console.log("_id: ", val._id)
     console.log("My id: ", currentUserID)
+    localStorage.setItem("SelectedId", val._id)
+    localStorage.setItem("SelectedName",val.name)
     
 }
 
@@ -344,6 +353,9 @@ console.log("SElected name in contacts: ", selectedName)
           fontSize: "30px",
           fontFamily: "initial",
           }}>{selectedName}</h1>
+
+         
+         
             <ChatContainer btn={btn} currentUserID={currentUserID} currentUserName={currentUserName} currentUserImage={currentUserImage} selectedId={selectedId} selectedImage={selectedImage} selectedName={selectedName} currentChat={undefined} />
             </div>
         </>
