@@ -21,16 +21,17 @@ const ChatInput = ({btn,currentUserID, currentUserName, currentUserImage, select
 
   console.log("In input: ", currentUserName)
 
+  console.log("Selected Name: ", selectedName)
+
   const sendChat = (event:any) =>{
     event.preventDefault()
     if(msg.length > 0){
       console.log("msg: ", msg)
       // handleSendMsg(msg)
       setMsg("")
+      alert(msg)
     }
   } 
-
-  
 
   return (
     <>
@@ -51,21 +52,26 @@ const ChatInput = ({btn,currentUserID, currentUserName, currentUserImage, select
       <>
       {/* <Welcome/> */}
     
+      
+      </>
+      :
+      <>
+      <div>
+        
+
       <div className="chat-messages"
       style={{
-        
+        marginTop:"750px",
+        marginLeft:"20px"
       }}>
-        
-       
-        
      <form action="" onSubmit={(event)=>sendChat(event)}>
      
       <input type="message" name='Type a message'placeholder='Type a message... ' onChange={(e)=>{setMsg(e.target.value)}} value={msg}
       style={{
         // marginBottom:"-70px",
-        marginTop:"830px",
+        // marginTop:"830px",
         marginLeft:"10px",
-        width:"70%", 
+        width:"99%", 
         borderRadius:"3rem",
         height:"50px",
         backgroundColor:"#ffffff34",
@@ -73,8 +79,12 @@ const ChatInput = ({btn,currentUserID, currentUserName, currentUserImage, select
         paddingLeft:"1rem",
         fontSize:"1.2rem"
         
-      }} />
-      <button 
+      }}
+      
+     
+
+      />
+       <button 
       className='shadow-slate-100 hover:to-white-900'
       style={{
         position:"relative",
@@ -87,17 +97,14 @@ const ChatInput = ({btn,currentUserID, currentUserName, currentUserImage, select
        border:"none",
        height:"51px",
        width:"50px",
-       marginBottom:"-20px",
-       marginTop:"-10px"
+       marginTop:"40px"
+       
         }}>
         <Send/></button>
-     </form>
-     
-     </div>
-      </>
-      :
-      <>
       
+     </form>
+     </div>
+     </div>
       </>
      }
     </>

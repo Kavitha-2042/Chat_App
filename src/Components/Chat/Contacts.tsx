@@ -109,6 +109,8 @@ const eventHandler = (val:any) =>{
     console.log("My id: ", currentUserID)
     
 }
+
+console.log("SElected name in contacts: ", selectedName)
     
   return (
     <div>
@@ -316,7 +318,34 @@ const eventHandler = (val:any) =>{
       {
         btn?
         <>
+             <div>
+          <img src={selectedImage} alt=""
+          style={{
+            width:"60px",
+            height: "4rem",
+            maxInlineSize: "100%,",
+            borderRadius: "500px",
+            display: "flex",
+            paddingTop: "-50px",
+            margin: "20px",
+            marginLeft: "400px",
+            marginTop:"-830px"
+          }}
+           />
+         <h1 style={{
+          color:"white",
+          justifyContent: "flex",
+          display: "flex",
+          alignItems: "baseline",
+          justifyItems: "baseline",
+          gap: "10px",
+          marginLeft: "470px",
+          marginTop: "-70px",
+          fontSize: "30px",
+          fontFamily: "initial",
+          }}>{selectedName}</h1>
             <ChatContainer btn={btn} currentUserID={currentUserID} currentUserName={currentUserName} currentUserImage={currentUserImage} selectedId={selectedId} selectedImage={selectedImage} selectedName={selectedName} currentChat={undefined} />
+            </div>
         </>
         :
         <>
