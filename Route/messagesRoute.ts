@@ -3,6 +3,8 @@ import * as messageController from '../Controller/msgController'
 
 const messageRoute = express.Router()
 
-messageRoute.post('/getmsg', messageController.addMsgs)
+messageRoute.post('/createMsg', messageController.createMsgs)
+
+messageRoute.post('/getAllMsgs', messageController.getAllMsgs)
 
 export default messageRoute
