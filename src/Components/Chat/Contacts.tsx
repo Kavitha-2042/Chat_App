@@ -8,6 +8,7 @@ import { Logout } from "@mui/icons-material";
 import ChatContainer from './ChatContainer';
 import Signout from "../../Pages/Signout";
 import ChatInput from './ChatInput';
+import Welcome from "./Welcome";
 
 interface propType{
   setbtn:React.Dispatch<React.SetStateAction<boolean>>
@@ -22,18 +23,18 @@ const Contacts = ({setbtn, btn, currentChat}:propType) => {
 
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState("");
-  const [allUsers, setAllUsers] = useState([]);
-
-  const [currentUserName, setCurrentUserName] = useState(undefined);
-  const [currentUserImage, setCurrentUserImage] = useState(undefined);
-  const [currentSelected, setCurrentSelected] = useState(undefined);
+  const [currentUserName, setCurrentUserName] = useState("");
+  const [currentUserImage, setCurrentUserImage] = useState("");
+  const [currentSelected, setCurrentSelected] = useState("");
   const [currentUserID, setCurrentUserID] = useState("")
 
-  const [allUserName, setAllUserName] = useState(undefined);
-  const [allUserImage, setAllUserImage] = useState(undefined);
+  const [allUsers, setAllUsers] = useState([]);
+  const [allUserName, setAllUserName] = useState("");
+  const [allUserImage, setAllUserImage] = useState("");
 
   const [selectedName, setSelectedName] = useState("")
   const [selectedImage, setSelectedImage] = useState("")
+  const [selectedId, setSelectedId] = useState("")
   const [clicked, setClicked] = useState(false)
 
    
@@ -55,13 +56,16 @@ const Contacts = ({setbtn, btn, currentChat}:propType) => {
             setCurrentUserName(currentUserResponse.data.details[0].name);
             setCurrentUserImage(currentUserResponse.data.details[0].image);
             setCurrentUserID(currentUserResponse.data.details[0]._id)
-          } else {
+          } 
+          else {
             navigate("/profileimage");
           }
         }
       })
       .catch((err) => console.log(err));
   }, []);
+
+  console.log("INcontacts Name: ", currentUserName)
 
   useEffect(() => {
     axios
@@ -98,6 +102,8 @@ const eventHandler = (val:any) =>{
     setSelectedName(val.name)
     setSelectedImage(val.image)
     setClicked(true)
+    setSelectedId(val._id)
+
     // navigate('/login')
     console.log("_id: ", val._id)
     console.log("My id: ", currentUserID)
@@ -307,14 +313,16 @@ const eventHandler = (val:any) =>{
       )}
       
       
-      {/* {
+      {
         btn?
         <>
-        <ChatContainer selectedImage={selectedImage} selectedName={selectedName} currentChat={undefined} />
+            <ChatContainer btn={btn} currentUserID={currentUserID} currentUserName={currentUserName} currentUserImage={currentUserImage} selectedId={selectedId} selectedImage={selectedImage} selectedName={selectedName} currentChat={undefined} />
         </>
         :
-        <></>
-      } */}
+        <>
+   
+        </>
+      } 
 
 
     </div>

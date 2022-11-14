@@ -87,7 +87,7 @@ const Chat = () => {
       {
         btn?
         <>
-        <ChatContainer currentChat={currentChat}/>
+        <ChatContainer currentChat={currentChat} btn={false}  />
         </>
         :
         <>

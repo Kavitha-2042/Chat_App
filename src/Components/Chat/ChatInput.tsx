@@ -1,18 +1,25 @@
 import { Logout, Send } from '@mui/icons-material'
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
+import Welcome from './Welcome'
 
 interface propTypes {
-//   handleSendMsg:any
-currentChat:any
-selectedName?:string|undefined
-selectedImage?:string|undefined
+  btn:boolean
+  currentUserID?:string
+  currentUserName?:string
+  currentUserImage?:string
+  selectedId?:string
+  selectedName?:string
+  selectedImage?:string
+  currentChat:any
 }
 // {handleSendMsg}:propTypes
 
-const ChatInput = ({currentChat, selectedImage, selectedName}:propTypes) => {
+const ChatInput = ({btn,currentUserID, currentUserName, currentUserImage, selectedId, selectedImage, selectedName,currentChat}:propTypes) => {
 
   const [msg, setMsg] = useState("")
+
+  console.log("In input: ", currentUserName)
 
   const sendChat = (event:any) =>{
     event.preventDefault()
@@ -22,6 +29,8 @@ const ChatInput = ({currentChat, selectedImage, selectedName}:propTypes) => {
       setMsg("")
     }
   } 
+
+  
 
   return (
     <>
@@ -36,11 +45,18 @@ const ChatInput = ({currentChat, selectedImage, selectedName}:propTypes) => {
        
         
           </div> */}
-      {/* <h1 style={{color:"white"}}>Chat input1</h1> */}
+      {/* <h1 style={{color:"white"}}>Chat input</h1> */}
+     {
+      btn?
+      <>
+      {/* <Welcome/> */}
+    
       <div className="chat-messages"
       style={{
         
       }}>
+        
+       
         
      <form action="" onSubmit={(event)=>sendChat(event)}>
      
@@ -78,6 +94,12 @@ const ChatInput = ({currentChat, selectedImage, selectedName}:propTypes) => {
      </form>
      
      </div>
+      </>
+      :
+      <>
+      
+      </>
+     }
     </>
   )
 }

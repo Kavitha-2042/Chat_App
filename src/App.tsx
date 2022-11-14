@@ -11,6 +11,7 @@ import Signout from './Pages/Signout';
 import Chat from './Pages/Chat';
 
 
+
 function App() {
   return (
    <div>
@@ -25,6 +26,7 @@ function App() {
         <Route path='/profileimage' element={<ProfileImage/>} />
         <Route path='/signout' element={<Signout/>} />
         <Route path='/chat' element={<Chat/>} />
+        
       </Routes>
     </BrowserRouter>
    </div>
