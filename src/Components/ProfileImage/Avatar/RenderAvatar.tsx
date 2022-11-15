@@ -1,11 +1,11 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "./avatar.css";
-import "../../../index.css"
+import "../../../index.css";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { CameraAlt } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import RenderCropper from '../Cropper/RenderCropper'
+import RenderCropper from "../Cropper/RenderCropper";
 
 const RenderAvatar = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -17,11 +17,11 @@ const RenderAvatar = () => {
     setAnchorEl(null);
   };
 
-  const [showCropper, setShowCropper] = useState(false)
+  const [showCropper, setShowCropper] = useState(false);
 
-  const [avatar,setAvatar] = useState("")
+  const [avatar, setAvatar] = useState("");
 
-  console.log("avatar: ", avatar)
+  console.log("avatar: ", avatar);
 
   return (
     <>
@@ -73,10 +73,10 @@ const RenderAvatar = () => {
           backgroundColor: "#0d0d48",
           marginBottom: "220px",
           marginRight: "750px",
-          color:"white"
+          color: "white",
         }}
       >
-        <CameraAlt fontSize="large"/>
+        <CameraAlt fontSize="large" />
       </IconButton>
       <Menu
         id="basic-menu"
@@ -88,17 +88,18 @@ const RenderAvatar = () => {
         }}
       >
         <MenuItem onClick={handleClose}>View</MenuItem>
-        <MenuItem onClick={()=>{
-            setShowCropper(true)
-            handleClose()
-        }}>Change</MenuItem>
+        <MenuItem
+          onClick={() => {
+            setShowCropper(true);
+            handleClose();
+          }}
+        >
+          Change
+        </MenuItem>
         <MenuItem onClick={handleClose}>Remove</MenuItem>
       </Menu>
 
-        {
-            showCropper &&  <RenderCropper setAvatar={setAvatar}/>
-        }
-     
+      {showCropper && <RenderCropper setAvatar={setAvatar} />}
     </>
   );
 };

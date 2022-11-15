@@ -3,41 +3,35 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Logo/Logo";
 
-
 import { Logout } from "@mui/icons-material";
-import ChatContainer from './ChatContainer';
+import ChatContainer from "./ChatContainer";
 import Signout from "../../Pages/Signout";
-import ChatInput from './ChatInput';
+import ChatInput from "./ChatInput";
 import Welcome from "./Welcome";
 
-interface propType{
-  setbtn:React.Dispatch<React.SetStateAction<boolean>>
-  btn:boolean
-  currentChat:any
+interface propType {
+  setbtn: React.Dispatch<React.SetStateAction<boolean>>;
+  btn: boolean;
+  currentChat: any;
 }
 
 // {changeChat}:any
-const Contacts = ({setbtn, btn, currentChat}:propType) => {
-
-  
-
+const Contacts = ({ setbtn, btn, currentChat }: propType) => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState("");
   const [currentUserName, setCurrentUserName] = useState("");
   const [currentUserImage, setCurrentUserImage] = useState("");
   const [currentSelected, setCurrentSelected] = useState("");
-  const [currentUserID, setCurrentUserID] = useState("")
+  const [currentUserID, setCurrentUserID] = useState("");
 
   const [allUsers, setAllUsers] = useState([]);
   const [allUserName, setAllUserName] = useState("");
   const [allUserImage, setAllUserImage] = useState("");
 
-  const [selectedName, setSelectedName] = useState("")
-  const [selectedImage, setSelectedImage] = useState("")
-  const [selectedId, setSelectedId] = useState("")
-  const [clicked, setClicked] = useState(false)
-
-   
+  const [selectedName, setSelectedName] = useState("");
+  const [selectedImage, setSelectedImage] = useState("");
+  const [selectedId, setSelectedId] = useState("");
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     if (!localStorage.getItem("jwt-token")) {
@@ -55,11 +49,8 @@ const Contacts = ({setbtn, btn, currentChat}:propType) => {
             setCurrentUser(currentUserResponse.data.details);
             setCurrentUserName(currentUserResponse.data.details[0].name);
             setCurrentUserImage(currentUserResponse.data.details[0].image);
-            setCurrentUserID(currentUserResponse.data.details[0]._id)
-            
-            
-          } 
-          else {
+            setCurrentUserID(currentUserResponse.data.details[0]._id);
+          } else {
             navigate("/profileimage");
           }
         }
@@ -67,11 +58,10 @@ const Contacts = ({setbtn, btn, currentChat}:propType) => {
       .catch((err) => console.log(err));
   }, []);
 
-  localStorage.setItem("CurrentUserName", currentUserName)
-  localStorage.setItem("CurrentUserId", currentUserID)
+  localStorage.setItem("CurrentUserName", currentUserName);
+  localStorage.setItem("CurrentUserId", currentUserID);
 
-  
-  console.log("INcontacts Name: ", currentUserName)
+  console.log("INcontacts Name: ", currentUserName);
 
   useEffect(() => {
     axios
@@ -83,7 +73,6 @@ const Contacts = ({setbtn, btn, currentChat}:propType) => {
             setAllUsers(allResponse.data.details);
             setAllUserImage(allResponse.data.details[0].image);
             setAllUserName(allResponse.data.details[0].name);
-          
           }
         }
       })
@@ -100,27 +89,24 @@ const Contacts = ({setbtn, btn, currentChat}:propType) => {
   //   setCurrentSelected(index)
   //   changeChat(allUsers)
   // };
-    
 
-const eventHandler = (val:any) =>{
-    
-    setbtn(true)
-    console.log("Button clikced")
-    setSelectedName(val.name)
-    setSelectedImage(val.image)
-    setClicked(true)
-    setSelectedId(val._id)
+  const eventHandler = (val: any) => {
+    setbtn(true);
+    console.log("Button clikced");
+    setSelectedName(val.name);
+    setSelectedImage(val.image);
+    setClicked(true);
+    setSelectedId(val._id);
 
     // navigate('/login')
-    console.log("_id: ", val._id)
-    console.log("My id: ", currentUserID)
-    localStorage.setItem("SelectedId", val._id)
-    localStorage.setItem("SelectedName",val.name)
-    
-}
+    console.log("_id: ", val._id);
+    console.log("My id: ", currentUserID);
+    localStorage.setItem("SelectedId", val._id);
+    localStorage.setItem("SelectedName", val.name);
+  };
 
-console.log("SElected name in contacts: ", selectedName)
-    
+  console.log("SElected name in contacts: ", selectedName);
+
   return (
     <div>
       {currentUserName && currentUserImage ? (
@@ -147,23 +133,18 @@ console.log("SElected name in contacts: ", selectedName)
               fontFamily: "cursive",
             }}
           >
-            <Logo /> 
-            
+            <Logo />
 
             <div
-          style={{
-            color:"white",
-            fontSize:"50px",
-            display:"flex",
-            justifyItems:"flex-end",
-            alignItems:"flex-end"
-            }}>
-
-       
+              style={{
+                color: "white",
+                fontSize: "50px",
+                display: "flex",
+                justifyItems: "flex-end",
+                alignItems: "flex-end",
+              }}
+            ></div>
           </div>
-          
-          </div>
-         
 
           <div
             style={{
@@ -199,43 +180,41 @@ console.log("SElected name in contacts: ", selectedName)
                   }}
                 />
                 <div>
-     
-                <div
-                  className="currentusername"
-                  style={{
-                    color: "white",
-                    justifyContent: "flex",
-                    display: "flex",
-                    alignItems: "baseline",
-                    justifyItems: "baseline",
-                    gap: "10px",
-                    marginLeft: "90px",
-                    marginTop: "-70px",
-                    fontSize: "30px",
-                    fontFamily: "initial",
-                    
-                  }}
-                >
-                  {<Link to='/profile'>{currentUserName}</Link>}
-                  <br />
-                </div>
+                  <div
+                    className="currentusername"
+                    style={{
+                      color: "white",
+                      justifyContent: "flex",
+                      display: "flex",
+                      alignItems: "baseline",
+                      justifyItems: "baseline",
+                      gap: "10px",
+                      marginLeft: "90px",
+                      marginTop: "-70px",
+                      fontSize: "30px",
+                      fontFamily: "initial",
+                    }}
+                  >
+                    {<Link to="/profile">{currentUserName}</Link>}
+                    <br />
+                  </div>
 
-                <Link to='/profile'
-                  style={{
-                    fontSize: "15px",
-                    marginTop: "-5px",
-                    paddingLeft: "100px",
-                    color: "white",
-                  }}
-                >
-                  User
-                </Link>
+                  <Link
+                    to="/profile"
+                    style={{
+                      fontSize: "15px",
+                      marginTop: "-5px",
+                      paddingLeft: "100px",
+                      color: "white",
+                    }}
+                  >
+                    User
+                  </Link>
+                </div>
               </div>
             </div>
-            
-            </div>
             <div
-            
+              className=" scrollbar-thin scrollbar-thumb-blue-700 scrollbar-track-blue-300 h-4/6 overflow-y-scroll"
               style={
                 {
                   //  backgroundColor:"#ffffff34",
@@ -243,9 +222,7 @@ console.log("SElected name in contacts: ", selectedName)
               }
             >
               <div
-              
-                className="allusers "
-                
+                className="allusers"
                 style={{
                   display: "flex",
                   flexDirection: "column",
@@ -268,22 +245,17 @@ console.log("SElected name in contacts: ", selectedName)
                     {allUsers.map((val: any) => {
                       return (
                         <div
-                        className=""
+                          className=""
                           key={val._id}
-                          
-                          onClick={()=>eventHandler(val)}
+                          onClick={() => eventHandler(val)}
                           style={{
                             backgroundColor: "#ffffff34",
-                            paddingLeft:"10px",
-                            
-                            
+                            paddingLeft: "10px",
                           }}
                         >
-                       
                           <img
                             src={val.image}
                             alt=""
-                            
                             className="rounded-full"
                             style={{
                               height: "4rem",
@@ -301,7 +273,6 @@ console.log("SElected name in contacts: ", selectedName)
                             }}
                           >
                             {val.name}
-                            
                           </h1>
                           <br />
                         </div>
@@ -311,10 +282,6 @@ console.log("SElected name in contacts: ", selectedName)
                 ) : (
                   <></>
                 )}
-
-                  
-
-
               </div>
             </div>
           </div>
@@ -322,53 +289,59 @@ console.log("SElected name in contacts: ", selectedName)
       ) : (
         <></>
       )}
-      
-      
-      {
-        btn?
+
+      {btn ? (
         <>
-             <div>
-          <img src={selectedImage} alt=""
-          style={{
-            width:"60px",
-            height: "4rem",
-            maxInlineSize: "100%,",
-            borderRadius: "500px",
-            display: "flex",
-            paddingTop: "-50px",
-            margin: "20px",
-            marginLeft: "400px",
-            marginTop:"-830px"
-          }}
-           />
-         <h1 style={{
-          color:"white",
-          justifyContent: "flex",
-          display: "flex",
-          alignItems: "baseline",
-          justifyItems: "baseline",
-          gap: "10px",
-          marginLeft: "470px",
-          marginTop: "-70px",
-          fontSize: "30px",
-          fontFamily: "initial",
-          }}>{selectedName}</h1>
+          <div>
+            <img
+              src={selectedImage}
+              alt=""
+              style={{
+                width: "60px",
+                height: "4rem",
+                maxInlineSize: "100%,",
+                borderRadius: "500px",
+                display: "flex",
+                paddingTop: "-50px",
+                margin: "20px",
+                marginLeft: "400px",
+                marginTop: "-830px",
+              }}
+            />
+            <h1
+              style={{
+                color: "white",
+                justifyContent: "flex",
+                display: "flex",
+                alignItems: "baseline",
+                justifyItems: "baseline",
+                gap: "10px",
+                marginLeft: "470px",
+                marginTop: "-70px",
+                fontSize: "30px",
+                fontFamily: "initial",
+              }}
+            >
+              {selectedName}
+            </h1>
 
-         
-         
-            <ChatContainer btn={btn} currentUserID={currentUserID} currentUserName={currentUserName} currentUserImage={currentUserImage} selectedId={selectedId} selectedImage={selectedImage} selectedName={selectedName} currentChat={undefined} />
-            </div>
+            <ChatContainer
+              btn={btn}
+              currentUserID={currentUserID}
+              currentUserName={currentUserName}
+              currentUserImage={currentUserImage}
+              selectedId={selectedId}
+              selectedImage={selectedImage}
+              selectedName={selectedName}
+              currentChat={undefined}
+            />
+          </div>
         </>
-        :
-        <>
-   
-        </>
-      } 
-
-
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
 
 export default Contacts;
-

@@ -36,6 +36,7 @@
 // export default ProfileImage
 
 import React from "react";
+import { Link } from "react-router-dom";
 import RenderAvatar from '../Components/ProfileImage/Avatar/RenderAvatar';
 
 
@@ -44,6 +45,20 @@ const ProfileImage = () => {
 
   return (
     <div>
+      <h1 style={{
+        color:"white",
+        display:"flex",
+        justifyItems:"center",
+        marginLeft:"700px",
+        marginTop:"100px",
+        fontSize:"50px",
+        marginBottom:"-10px",
+        fontFamily:"serif"
+      }}>
+        <Link to='/chat'>
+      Set your Profile Image!
+      </Link>
+      </h1>
      <RenderAvatar />
     </div>
   );

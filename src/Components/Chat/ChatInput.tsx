@@ -1,7 +1,7 @@
-import { Logout, Send } from "@mui/icons-material";
+import { Send } from "@mui/icons-material";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { borderRadius } from "@mui/system";
+
 
 interface propTypes {
   btn: boolean;
@@ -33,9 +33,9 @@ const ChatInput = ({
   const [allMsg, setAllMsg] = useState([]);
   const [count, setCount] = useState(0);
   const [msgSender, setMsgSender] = useState([]);
-  const [same, setSame] = useState(false)
+  const [same, setSame] = useState(false);
 
-  const [details, setDetails] = useState([])
+  const [details, setDetails] = useState([]);
 
   console.log("In input: ", currentUserName);
 
@@ -59,10 +59,11 @@ const ChatInput = ({
       })
       .then((messageResponse) => {
         if (messageResponse) {
-          alert("Success");
+          // alert("Success");
         }
       })
       .catch((err) => console.log(err));
+      
   };
 
   useEffect(() => {
@@ -73,12 +74,11 @@ const ChatInput = ({
       })
       .then((allMessagesResponse) => {
         if (allMessagesResponse.data.auth === true) {
-          setDetails(allMessagesResponse.data.details)
+          setDetails(allMessagesResponse.data.details);
           setAllMsg(allMessagesResponse.data.allMessages);
           console.log("all messgage: ", allMessagesResponse.data.allMessages);
           setCount(allMessagesResponse.data.length);
-         setMsgSender(allMessagesResponse.data.sender)
-          
+          setMsgSender(allMessagesResponse.data.sender);
         }
       })
       .catch((err) => console.log(err));
@@ -103,7 +103,7 @@ const ChatInput = ({
       ) : (
         <>
           <div>
-            <h1 style={{ color: "white" }}>{msg}</h1>
+            {/* <h1 style={{ color: "white" }}>{msg}</h1> */}
             {/* <h1 style={{color:"white"}}>{sendMsg}</h1>    */}
             <div
               className=""
@@ -119,10 +119,9 @@ const ChatInput = ({
             flexDirection:"column"
           }}>{allMsg }</h1>  */}
               <div
-               
                 style={{
                   maxWidth: "100%",
-                  overflowWrap:"break-word",
+                  overflowWrap: "break-word",
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
@@ -145,31 +144,43 @@ const ChatInput = ({
                   </ul>
                 ))} */}
 
-                {
-                  details.map((val:any)=>{
-                    return(
-                      <ul style={{
-                        padding:"10px",
-                        backgroundColor:val.sender===currentUserNameValue?"#4f04ff90":"#ffffff30",
-                        justifyContent:val.sender===currentUserNameValue?"flex-end":"flex-start",
-                        alignContent:val.sender===currentUserNameValue?"end":"start",
-                        marginLeft:val.sender===currentUserNameValue?"300px":"-300px",
-                        marginRight:val.sender===currentUserNameValue?"-700px":"700px",
-                        borderRadius:"10%",
-                        
-                      }} > 
-                        {val.message.text}
-                      </ul>
-                    )
-                  })
-                }
+                {details.map((val: any) => {
+                  return (
+                    <ul
+                      style={{
+                        padding: "10px",
+                        backgroundColor:
+                          val.sender === currentUserNameValue
+                            ? "#4f04ff90"
+                            : "#ffffff30",
+                        justifyContent:
+                          val.sender === currentUserNameValue
+                            ? "flex-end"
+                            : "flex-start",
+                        alignContent:
+                          val.sender === currentUserNameValue ? "end" : "start",
+                        marginLeft:
+                          val.sender === currentUserNameValue
+                            ? "300px"
+                            : "-300px",
+                        marginRight:
+                          val.sender === currentUserNameValue
+                            ? "-600px"
+                            : "700px",
+                        borderRadius: "10%",
+                      }}
+                    >
+                      {val.message.text}
+                    </ul>
+                  );
+                })}
               </div>
             </div>
-
+<div>
             <div
               className="chat-messages"
               style={{
-                marginTop: "230px",
+                marginTop: "600px",
                 marginLeft: "10px",
                 
               }}
@@ -215,6 +226,7 @@ const ChatInput = ({
                   <Send />
                 </button>
               </form>
+            </div>
             </div>
           </div>
         </>
