@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useAppDispatch } from "../Redux/Hooks";
-import { initialize } from "../Redux/Slice/userSlice";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 
 const Register = () => {
-  const dispatch = useAppDispatch();
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -58,10 +55,11 @@ const Register = () => {
           className="block p-6 rounded-lg shadow-2xl max-w-lg  m-48"
         >
           <h5
-          style={{
-            fontFamily:"serif"
-          }}
-          className="text-white leading-tight font-medium mb-2 text-center text-2xl">
+            style={{
+              fontFamily: "serif",
+            }}
+            className="text-white leading-tight font-medium mb-2 text-center text-2xl"
+          >
             Register
           </h5>
           <div
@@ -80,7 +78,7 @@ const Register = () => {
                 border: "0.1rem solid #4e0eff",
                 borderRadius: "0.4rem",
                 backgroundColor: "#131324",
-                color:"white"
+                color: "white",
               }}
               className="rounded-md  ml-6 required p-1 m-2 border border-blue-700   text-start"
               onChange={(e: any) => {
@@ -97,7 +95,7 @@ const Register = () => {
                 border: "0.1rem solid #4e0eff",
                 borderRadius: "0.4rem",
                 backgroundColor: "#131324",
-                color:"white"
+                color: "white",
               }}
               className="rounded-md  ml-6 required p-1 m-2 border border-blue-700   text-start"
               onChange={(e: any) => {
@@ -114,7 +112,7 @@ const Register = () => {
                 border: "0.1rem solid #4e0eff",
                 borderRadius: "0.4rem",
                 backgroundColor: "#131324",
-                color:"white"
+                color: "white",
               }}
               className="rounded-md  ml-6 required p-1 m-2 border border-blue-700   text-start"
               onChange={(e: any) => {
@@ -161,7 +159,7 @@ const Register = () => {
                   color: "#9e0efdff",
                   textDecoration: "none",
                   fontWeight: "bold",
-                  fontFamily:"serif"
+                  fontFamily: "serif",
                 }}
               >
                 Login

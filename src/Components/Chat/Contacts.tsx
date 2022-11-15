@@ -3,11 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Logo/Logo";
 
-import { Logout } from "@mui/icons-material";
 import ChatContainer from "./ChatContainer";
-import Signout from "../../Pages/Signout";
-import ChatInput from "./ChatInput";
-import Welcome from "./Welcome";
 
 interface propType {
   setbtn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -79,17 +75,6 @@ const Contacts = ({ setbtn, btn, currentChat }: propType) => {
       .catch((err) => console.log(err));
   }, []);
 
-  // console.log("current user name: ", currentUserName);
-  // console.log("current user image: ", currentUserImage);
-  // console.log("all users: ", allUsers);
-  // console.log("all user name: ", allUserName);
-  // console.log("all user image: ", allUserImage);
-
-  // const changeCurrentChat = (index:any, allUsers:any) => {
-  //   setCurrentSelected(index)
-  //   changeChat(allUsers)
-  // };
-
   const eventHandler = (val: any) => {
     setbtn(true);
     console.log("Button clikced");
@@ -98,7 +83,6 @@ const Contacts = ({ setbtn, btn, currentChat }: propType) => {
     setClicked(true);
     setSelectedId(val._id);
 
-    // navigate('/login')
     console.log("_id: ", val._id);
     console.log("My id: ", currentUserID);
     localStorage.setItem("SelectedId", val._id);
@@ -117,7 +101,6 @@ const Contacts = ({ setbtn, btn, currentChat }: propType) => {
             gridTemplateRows: "10% 75% 15%",
             overflow: "hidden",
             backgroundColor: "#080420",
-            // backgroundColor:"#0d0d30",
           }}
         >
           <div
@@ -161,7 +144,6 @@ const Contacts = ({ setbtn, btn, currentChat }: propType) => {
                 alignItems: "center",
                 gap: "2rem",
                 width: "460px",
-                // height:"100px"
               }}
             >
               <div className="profileimage">
@@ -214,12 +196,8 @@ const Contacts = ({ setbtn, btn, currentChat }: propType) => {
               </div>
             </div>
             <div
-              className=" scrollbar-thin scrollbar-thumb-blue-700 scrollbar-track-blue-300 h-4/6 overflow-y-scroll"
-              style={
-                {
-                  //  backgroundColor:"#ffffff34",
-                }
-              }
+              className=" scrollbar-thin scrollbar-thumb-blue-700  scrollbar-track-blue-300 h-4/6 overflow-y-scroll "
+              style={{}}
             >
               <div
                 className="allusers"
@@ -227,8 +205,6 @@ const Contacts = ({ setbtn, btn, currentChat }: propType) => {
                   display: "flex",
                   flexDirection: "column",
                   textAlign: "center",
-
-                  //    backgroundColor:"#ffffff34",
 
                   cursor: "pointer",
 

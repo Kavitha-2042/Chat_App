@@ -2,7 +2,6 @@ import { Send } from "@mui/icons-material";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
 interface propTypes {
   btn: boolean;
   currentUserID?: string;
@@ -33,7 +32,6 @@ const ChatInput = ({
   const [allMsg, setAllMsg] = useState([]);
   const [count, setCount] = useState(0);
   const [msgSender, setMsgSender] = useState([]);
-  const [same, setSame] = useState(false);
 
   const [details, setDetails] = useState([]);
 
@@ -63,7 +61,6 @@ const ChatInput = ({
         }
       })
       .catch((err) => console.log(err));
-      
   };
 
   useEffect(() => {
@@ -86,38 +83,17 @@ const ChatInput = ({
 
   return (
     <>
-      {/* <div className='hover:to-white shadow-slate-50'
-     style={{
-        marginLeft:"1300px",
- color:"white",
- 
- cursor:"pointer"
-          }}>
-        <Link to='/signout'><Logout/></Link>
-       
-        
-          </div> */}
-      {/* <h1 style={{color:"white"}}>Chat input</h1> */}
       {btn ? (
-        <>{/* <Welcome/> */}</>
+        <></>
       ) : (
         <>
           <div>
-            {/* <h1 style={{ color: "white" }}>{msg}</h1> */}
-            {/* <h1 style={{color:"white"}}>{sendMsg}</h1>    */}
             <div
               className=""
               style={{
                 color: "white",
-                //  padding:"1rem 2rem",
               }}
             >
-              {/* <h1 style={{
-            color:"white",
-            padding:"1rem 2rem",
-            display:'flex',
-            flexDirection:"column"
-          }}>{allMsg }</h1>  */}
               <div
                 style={{
                   maxWidth: "100%",
@@ -133,17 +109,6 @@ const ChatInput = ({
                   color: "#d1d1d1",
                 }}
               >
-                {/* {allMsg.map((val: any) => (
-                  <ul className="content"  
-                  
-
-                  style={{
-                   backgroundColor:same?"green":"red"
-                  }}>
-                    {val}
-                  </ul>
-                ))} */}
-
                 {details.map((val: any) => {
                   return (
                     <ul
@@ -176,57 +141,54 @@ const ChatInput = ({
                 })}
               </div>
             </div>
-<div>
-            <div
-              className="chat-messages"
-              style={{
-                marginTop: "600px",
-                marginLeft: "10px",
-                
-              }}
-            >
-              <form action="" onSubmit={(event) => sendChat(event)}>
-                <input
-                  type="message"
-                  name="Type a message"
-                  placeholder="Type a message... "
-                  onChange={(e) => {
-                    setMsg(e.target.value);
-                  }}
-                  value={msg}
-                  style={{
-                    // marginBottom:"-70px",
-                    // marginTop:"830px",
-                    marginLeft: "-3px",
-                    width: "99%",
-                    borderRadius: "3rem",
-                    height: "50px",
-                    backgroundColor: "#ffffff34",
-                    color: "white",
-                    paddingLeft: "1rem",
-                    fontSize: "1.2rem",
-                  }}
-                />
-                <button
-                  className="shadow-slate-100 hover:to-white-900"
-                  style={{
-                    position: "relative",
-                    marginLeft: "-50px",
-                    backgroundColor: "#9a86f3",
-                    color: "white",
-                    // padding:"0.3rem 2rem",
-                    borderRadius: "50%",
-                    alignItems: "center",
-                    border: "none",
-                    height: "51px",
-                    width: "51px",
-                    marginTop: "40px",
-                  }}
-                >
-                  <Send />
-                </button>
-              </form>
-            </div>
+            <div>
+              <div
+                className="chat-messages"
+                style={{
+                  marginTop: "500px",
+                  marginLeft: "10px",
+                }}
+              >
+                <form action="" onSubmit={(event) => sendChat(event)}>
+                  <input
+                    type="message"
+                    name="Type a message"
+                    placeholder="Type a message... "
+                    onChange={(e) => {
+                      setMsg(e.target.value);
+                    }}
+                    value={msg}
+                    style={{
+                      marginLeft: "-3px",
+                      width: "99%",
+                      borderRadius: "3rem",
+                      height: "50px",
+                      backgroundColor: "#ffffff34",
+                      color: "white",
+                      paddingLeft: "1rem",
+                      fontSize: "1.2rem",
+                    }}
+                  />
+                  <button
+                    className="shadow-slate-100 hover:to-white-900"
+                    style={{
+                      position: "relative",
+                      marginLeft: "-50px",
+                      backgroundColor: "#9a86f3",
+                      color: "white",
+
+                      borderRadius: "50%",
+                      alignItems: "center",
+                      border: "none",
+                      height: "51px",
+                      width: "51px",
+                      marginTop: "40px",
+                    }}
+                  >
+                    <Send />
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </>

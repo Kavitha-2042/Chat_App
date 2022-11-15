@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import MenuItem from "@mui/material/MenuItem";
+
 import { Button } from "@mui/material";
 import { toast } from "react-toastify";
-import { Logout } from "@mui/icons-material";
+
 import { Link } from "react-router-dom";
 
 const Admin = () => {
@@ -63,7 +63,7 @@ const Admin = () => {
           fontSize: "50px",
           marginTop: "50px",
           marginBottom: "10px",
-          fontFamily:"serif"
+          fontFamily: "serif",
         }}
       >
         <Link to="/signout">Welcome Admin!</Link>
@@ -76,7 +76,7 @@ const Admin = () => {
             flexDirection: "column",
             textAlign: "center",
 
-            //    backgroundColor:"#ffffff34",
+            
 
             cursor: "pointer",
 
@@ -144,7 +144,7 @@ const Admin = () => {
               marginLeft: "800px",
               fontSize: "30px",
               backgroundColor: "darkslateblue",
-              fontFamily:"initial"
+              fontFamily: "initial",
             }}
           >
             Remove {selectedName}

@@ -8,7 +8,6 @@ import axios from "axios";
 import { dataURLtoFile } from "../../../Utils/dataUrlToFile";
 
 const RenderCropper = ({ setAvatar }: any) => {
-  //const inputRef = React.useRef<HTMLInputElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const triggerFileSelectPopup = () => inputRef.current?.click();
@@ -27,18 +26,14 @@ const RenderCropper = ({ setAvatar }: any) => {
   };
 
   const onSelectFile = (e: any) => {
-    // console.log(e)==> see in target->files->file
     if (e.target.files && e.target.files.length > 0) {
       const reader = new FileReader(); //for the use of reading the file asynchronously
       reader.readAsDataURL(e.target.files[0]); //read the file in data url
       reader.addEventListener("load", () => {
-        // console.log(reader.result)
         setImage(reader.result);
       });
     }
   };
-
-  // console.log("image: ", image)
 
   const onClear = () => {
     if (!image) {
@@ -84,9 +79,6 @@ const RenderCropper = ({ setAvatar }: any) => {
   return (
     <>
       <div className="container  ">
-        {/* <IconButton  style={{position:"absolute", top:"70px",right:"30px"}}>
-            <Cancel className='hover:bg-red-700' style={{ color:"red",fontSize:"30px" }}  />
-            </IconButton> */}
         <div
           className="conatiner-cropper"
           style={{ height: "90%", width: "100vw" }}
@@ -157,12 +149,6 @@ const RenderCropper = ({ setAvatar }: any) => {
           >
             Choose
           </Button>
-
-          {/* <Button variant="contained" color="secondary"
-          onClick={onDownload}
-          >
-            Download
-          </Button> */}
 
           <Button
             variant="contained"

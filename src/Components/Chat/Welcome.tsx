@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { Logout } from "@mui/icons-material";
+
+
 
 const Welcome = () => {
   const [name, setName] = useState("");

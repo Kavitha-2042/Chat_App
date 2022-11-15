@@ -59,15 +59,7 @@ const Login = () => {
               autoClose: 3000,
             });
           }
-        } 
-        // else {
-        //   toast.info(LoginResponse.data.message, {
-        //     position: toast.POSITION.TOP_CENTER,
-        //     theme: "dark",
-        //     autoClose: 3000,
-        //   });
-        //   // alert("err")
-        // }
+        }
 
         if (LoginResponse.data.role === "User") {
           if (LoginResponse.data.auth === true) {
@@ -93,15 +85,7 @@ const Login = () => {
               autoClose: 3000,
             });
           }
-        } 
-        // else {
-        //   toast.info(LoginResponse.data.message, {
-        //     position: toast.POSITION.TOP_CENTER,
-        //     theme: "dark",
-        //     autoClose: 3000,
-        //   });
-        //   // alert("err")
-        // }
+        }
       })
       .catch((err) => {
         toast.error(err, {
@@ -132,11 +116,12 @@ const Login = () => {
             className="block p-6 rounded-lg shadow-2xl max-w-lg  m-48"
             style={{ backgroundColor: "#131355" }}
           >
-            <h5 
-            style={{
-              fontFamily:"serif"
-            }}
-            className="text-white leading-tight font-medium mb-2 text-center text-2xl">
+            <h5
+              style={{
+                fontFamily: "serif",
+              }}
+              className="text-white leading-tight font-medium mb-2 text-center text-2xl"
+            >
               Login
             </h5>
             <div
@@ -155,8 +140,7 @@ const Login = () => {
                   border: "0.1rem solid #4e0eff",
                   borderRadius: "0.4rem",
                   backgroundColor: "#131324",
-                  color:"white",
-                  
+                  color: "white",
                 }}
                 className="rounded-md  ml-6 required p-1 m-2 border border-blue-700   text-start"
                 onChange={(e: any) => {
@@ -172,7 +156,7 @@ const Login = () => {
                   border: "0.1rem solid #4e0eff",
                   borderRadius: "0.4rem",
                   backgroundColor: "#131324",
-                  color:"white"
+                  color: "white",
                 }}
                 required
                 className="rounded-md  ml-6 required p-1 m-2 border border-blue-700 text-start"
@@ -196,9 +180,6 @@ const Login = () => {
                   Remember me
                 </label>
               </div>
-              {/* <a href="#!" className="text-gray-800">
-                Forgot password?
-              </a> */}
             </div>
 
             <div className="text-center lg:text-left">
@@ -210,17 +191,16 @@ const Login = () => {
                   justifyContent: "center",
                   alignItems: "center",
                   marginLeft: "70px",
-                  fontFamily:"serif"
+                  fontFamily: "serif",
                 }}
                 className="inline-block px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
               >
                 Login
               </button>
-              <p 
-              style={{
-                
-              }}
-              className="text-sm font-semibold mt-2 pt-1 mb-0 text-white">
+              <p
+                style={{}}
+                className="text-sm font-semibold mt-2 pt-1 mb-0 text-white"
+              >
                 Don't have an account?{" "}
                 <Link
                   to="/register"
@@ -228,7 +208,7 @@ const Login = () => {
                     color: "#9e0efdff",
                     textDecoration: "none",
                     fontWeight: "bold",
-                    fontFamily:"serif"
+                    fontFamily: "serif",
                   }}
                 >
                   Create One

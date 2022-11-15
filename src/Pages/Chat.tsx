@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Contacts from "../Components/Chat/Contacts";
 import Welcome from "../Components/Chat/Welcome";
 import ChatContainer from "../Components/Chat/ChatContainer";
-import { Logout } from "@mui/icons-material";
+
 
 const Chat = () => {
   const navigate = useNavigate();
@@ -31,9 +31,7 @@ const Chat = () => {
           if (currentUserResponse.data.image) {
             setCurrentUser(currentUserResponse.data.details);
           }
-          // else{
-          //   navigate('/profileimage')
-          // }
+         
         }
       })
       .catch((err) => console.log(err));
@@ -82,7 +80,7 @@ const Chat = () => {
             gridTemplateColumns: "25% 75%",
           }}
         >
-          {/* changeChat={handleChatChange} */}
+          
           <Contacts setbtn={setBtn} btn={btn} currentChat={currentChat} />
           {btn ? (
             <>
@@ -94,15 +92,7 @@ const Chat = () => {
             </>
           )}
 
-          {/* {
-        currentChat === undefined?
-        <><Welcome /></>
-        :
-        <>
-        <ChatContainer currentChat={currentChat} />
-        </>
-      }
-    */}
+          
         </div>
       </div>
     </div>

@@ -66,11 +66,12 @@ const Password = () => {
           }}
           className="block p-6 rounded-lg shadow-2xl max-w-lg  m-48"
         >
-          <h5 
-          style={{
-            fontFamily:"serif"
-          }}
-          className="text-white leading-tight font-medium mb-2 text-center text-2xl">
+          <h5
+            style={{
+              fontFamily: "serif",
+            }}
+            className="text-white leading-tight font-medium mb-2 text-center text-2xl"
+          >
             Register
           </h5>
           <div
@@ -89,7 +90,7 @@ const Password = () => {
                 border: "0.1rem solid #4e0eff",
                 borderRadius: "0.4rem",
                 backgroundColor: "#131324",
-                color:"white"
+                color: "white",
               }}
               className="rounded-md  ml-6 required p-1 m-2 border border-blue-700   text-start"
               onChange={(e: any) => {
@@ -106,7 +107,7 @@ const Password = () => {
                 border: "0.1rem solid #4e0eff",
                 borderRadius: "0.4rem",
                 backgroundColor: "#131324",
-                color:"white"
+                color: "white",
               }}
               className="rounded-md  ml-6 required p-1 m-2 border border-blue-700   text-start"
               onChange={(e: any) => {
