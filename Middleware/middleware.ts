@@ -10,7 +10,7 @@ let envSecret = process.env.SECRET_KEY as string
 
 const middleware = (req:ModifiedRequest, res:express.Response, next:express.NextFunction) =>{
     let token = req.headers['jwt-token'] as string
-    console.log("tokebn: ", token)
+   
 
     if(token && envSecret){
         let verifying = jwt.verify(token, envSecret)

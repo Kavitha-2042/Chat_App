@@ -58,10 +58,10 @@ export const Register = (req:ModifiedRequest, res:express.Response) =>{
                     const MailObject = transporter.sendMail({
                     from:process.env.AUTH_EMAIL,
                     to:email,
-                    subject:"Chat-App_Password Link",
+                    subject:"Group Chat_Password Link",
                     text:`http://localhost:3000/register/${urlResponse.url}`
                 })
-                .then((response)=>{
+                .then((response)=>{ 
                     return res.json({
                         message:"Link sent", 
                         redirection:null,
@@ -221,9 +221,9 @@ export const Login = (req:ModifiedRequest, res:express.Response) =>{
                     })
                 }
             }
-            console.log("below the admin")
+           
             //Here the role is User
-                console.log("User")
+              
                 bcryptjs.compare(password, nameResponse.password)
                 .then((comparedResult)=>{
                     if(!comparedResult){
@@ -234,7 +234,7 @@ export const Login = (req:ModifiedRequest, res:express.Response) =>{
                         })
                     }
                     let token = jwt.sign({_id:nameResponse._id}, process.env.SECRET_KEY as string)
-                    console.log("Token in login: ", token)
+               
                     return res.json({
                         message:"Login successful",
                         auth:true,
@@ -356,7 +356,7 @@ export const CurrentUser = (req:ModifiedRequest, res:express.Response) =>{
 
 export const AllUsers = (req:ModifiedRequest, res:express.Response) =>{
     const {role} = req.users
-
+ 
     userModel.find({$and:[{"role":"User"},{_id:{$ne:req.users._id}}]}).select([
         "name",
         "email",
