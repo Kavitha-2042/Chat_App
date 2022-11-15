@@ -51,4 +51,3 @@ export const getAllMsgs = (req:express.Request, res:express.Response)=>{
     .catch(err=>console.log(err))
 }
 
-

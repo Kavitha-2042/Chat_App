@@ -20,4 +20,6 @@ userRoute.get('/currentUser', middleware, userController.CurrentUser)
 
 userRoute.get('/allUsers',middleware, userController.AllUsers)
 
+userRoute.post('/deleteUser', userController.deleteUser)
+
 export default userRoute

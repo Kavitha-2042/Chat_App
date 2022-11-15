@@ -58,7 +58,7 @@ export const Register = (req:ModifiedRequest, res:express.Response) =>{
                     const MailObject = transporter.sendMail({
                     from:process.env.AUTH_EMAIL,
                     to:email,
-                    subject:"Group Chat_Password Link",
+                    subject:"Chat-App_Password Link",
                     text:`http://localhost:3000/register/${urlResponse.url}`
                 })
                 .then((response)=>{
@@ -138,7 +138,7 @@ export const PasswordUrl = (req:ModifiedRequest, res:express.Response) =>{
                     if(password === conPassword){
                         bcryptjs.hash(password,15)
                         .then((hashPassword)=>{
-                            console.log("Hash password: ", hashPassword)
+                            // console.log("Hash password: ", hashPassword)
                             userModel.updateOne({email:urlResponse.email}, {password:hashPassword})
                             .then((updateResponse)=>{
                                 console.log("update response: ", updateResponse)
@@ -195,17 +195,17 @@ export const Login = (req:ModifiedRequest, res:express.Response) =>{
     .then((validationResult)=>{
         userModel.findOne({name})
         .then((nameResponse)=>{
-            console.log("Name Response: ", nameResponse)
+            // console.log("Name Response: ", nameResponse)
             if(!nameResponse){
                 return res.json({
                     message:"User doesn't exist",auth:false,user:null
                 })
             }
-            console.log("Below the nt name response")
+            // console.log("Below the nt name response")
             if(nameResponse.role === 'Admin'){
                 if(nameResponse.password === password){
                     let token = jwt.sign({_id:nameResponse._id}, process.env.SECRET_KEY as string)
-                    console.log("Admin Token: ", token)
+                    // console.log("Admin Token: ", token)
                     return res.json({
                         message:"Admin login successful",
                         auth:true,
@@ -368,6 +368,19 @@ export const AllUsers = (req:ModifiedRequest, res:express.Response) =>{
             message:"All users Details sent",
             details: allUsersResponse,
             auth:true
+        })
+    })
+    .catch(err=>console.log(err))
+}
+
+export const deleteUser = (req:ModifiedRequest, res:express.Response) =>{
+    const {name} = req.body
+
+    userModel.deleteOne({name})
+    .then((deleteResponse)=>{
+        return res.json({
+            message:"Deleted",
+            detail:deleteResponse
         })
     })
     .catch(err=>console.log(err))
